@@ -9,7 +9,7 @@ namespace libHitron2
     public class Status
     {
         #region SystemInfo
-        public SystemInformatonInfo System_Information()
+        public SystemInformationInfo System_Information()
         {
             var client = Session.client;
             using (var request = new HttpRequestMessage(new HttpMethod("GET"), "/1/Device/Router/SysInfo?_=" + DateTimeOffset.Now.ToUnixTimeSeconds()))
@@ -17,12 +17,12 @@ namespace libHitron2
                 var response = client.Send(request);
                 var responseString = response.Content.ReadAsStringAsync().Result; 
                 //Console.WriteLine(responseString);
-                var Data = JsonConvert.DeserializeObject<SystemInformatonInfo>(responseString);
+                var Data = JsonConvert.DeserializeObject<SystemInformationInfo>(responseString);
                 return Data;
             }
         }
 
-        public class SystemInformatonInfo
+        public class SystemInformationInfo
         {
             public string errCode { get; set; }
             public string errMsg { get; set; }
